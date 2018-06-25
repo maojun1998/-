@@ -1,0 +1,64 @@
+基本需求
+----------------------------------------
+1---- 录入航班信息。
+2---- 加载航班信息。
+3---- 查询航线信息。
+4---- 客户订票。
+5---- 客户退票。
+6---- 保存操作。
+7---- 输出所有航班信息。
+8---- 修改航班信息。
+0---- 退出系统 。
+
+-----------------------------------------
+
+数据结构设计:
+-----------------------------------------
+typedef  struct _Airline {
+    char startStationName[20];						//起点站
+    char endStationName[20]; 						//终点站
+    char departuresTime[20];						//起飞时间xxxx-xx-xx-xx-xx 年份-月份-号-几点-几分
+    char arrivalTime[20];							//到达时间xxxx-xx-xx-xx-xx 年份-月份-号-几点-几分
+    char flightNo[20];								//航班号
+    char airplaneNo[20];							//飞机号
+    int  limitPeopleNo;								//最大乘客量
+    int  lastTicketNo;								//剩余票数
+    struct _OrderListHead *pOrderListHead;			//乘客链表头
+    struct _WaitOrderListHead *pWaitOrderListHead;  //等待排队的乘客的链表头
+} Airline;
+
+//乘客链表头
+typedef struct _OrderListHead {
+	struct _OrderList *pOrderList;          //头指针
+    int orderNo;                            //乘客数
+    int current;                            //用于Querry族函数
+    struct _OrderList *pCurrentOrderList;   //用于Querry族函数
+} OrderListHead;
+
+//等待购票的链表表头
+typedef struct _WaitOrderListHead {
+	struct _WaitOrderList *pWaitOrderList;          //头指针
+	int waitNo;					                    //等票的人数
+    int current;                                    //用于Querry族函数
+    struct _WaitOrderList *pCurrentWaitOrderList;   //用于Querry族函数
+} WaitOrderListHead;
+
+typedef struct _Customer {
+    char customerName[20];		//乘客姓名
+    int  needseatNo;			//票需求量
+    char identyNo[20];			//身份证号
+} Customer;
+typedef struct _WaitCustomer {
+	char customerName[20];		//乘客姓名
+    int  needseatNo;            //票需求量
+	char identyNo[20];			//身份证号
+}
+typedef struct _OrderList {
+    Customer customer;
+    struct _OrderList *pNextOrderList;              //下一个乘客
+} OrderList;
+
+typedef struct _WaitOrderList {
+    WaitCustomer waitCustomer;
+    struct _WaitOrderList *pNextWaitCustomer;       //下一个等票的乘客
+} WaitOrderList;
