@@ -11,7 +11,7 @@ extern AirlineListHead globalAirLineListHead;
 #define _CRTIMP 
 #endif  /* _DLL */ 
 #endif  /* _CRTIMP */ 
-_declspec(dllimport) extern int errno;
+
 void LoadFileRecordToMem(void)
 {
     FILE *fp;

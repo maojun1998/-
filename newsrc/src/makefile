@@ -1,16 +1,20 @@
+CFLAG=/c 
+LFLAG= 
+
 all: ars.exe
 
 ars.exe : main.obj ars.obj ansic.obj
-    link /DEFAULTLIB:msvcrt.lib /NODEFAULTLIB:LIBC.lib /NODEFAULTLIB:libcmt.lib ars.obj main.obj ansic.obj
+    link  $(LFLAG) ars.obj main.obj ansic.obj
 
 main.obj : main.c main.h ars.h
-    cl /c /MD /O2 main.c
-    
+    cl $(CFLAG) main.c
+
 ars.obj : ars.c ars.h
-    cl /c /MD /O2 ars.c
-    
+    cl $(CFLAG) ars.c
+
 ansic.obj : ansic.c main.h ars.h
-    cl /c /MD /O2 ansic.c
+    cl $(CFLAG) ansic.c
+    
 clean: 
-    del *obj *exe LOG.log
+    del *obj LOG.log *PDB *ilk *asm
     

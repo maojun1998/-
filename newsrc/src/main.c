@@ -367,6 +367,7 @@ static void OrderTicket(void)
     OrderList *pOrderList;
     WaitOrderList *pWaitOrderList;
     
+
     char goon_orderflag;
     char isAddWait;
     do {
@@ -376,7 +377,7 @@ static void OrderTicket(void)
         printf("----------------------------\n");
         scanf("%d", &option);
         fflush(stdin);
-        
+        printlog("In OrderTicket\n");
         if (option == 1) {
                 printf("请输入需要订票的航班号:\n");
                 scanf("%s", flightNo);
@@ -404,8 +405,9 @@ static void OrderTicket(void)
                         fflush(stdin);
                         printf("请输入需要订票的数量:\n");
                         scanf("%d", &pOrderList->customer.needSeatNo);
+                       
                         fflush(stdin);
-                        if (pAirlineList->pAirline->lastTicketNo >= pOrderList->customer.needSeatNo) {
+                        if ((pAirlineList->pAirline->lastTicketNo) >= (pOrderList->customer.needSeatNo)) {
                             if (AddOrderList(pOrderList, pAirlineList)) {
                                 printf("订票成功\n");
                             }
@@ -427,10 +429,11 @@ static void OrderTicket(void)
                     printf("是否继续订票(Y:是, N:否)\n");
                     scanf("%s", &goon_orderflag);
                     fflush(stdin);
+                   
                 } while (goon_orderflag == 'Y'); 
         }        
     } while (option != 0);
-      
+     printlog("Out OrderTicket\n"); 
 }
 static void RefundTicket(void)
 {
