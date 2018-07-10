@@ -1,0 +1,20 @@
+CFLAG=/c /MD /O2
+LDFLAG= 
+
+all: ars.exe
+
+ars.exe : main.obj ars.obj ansic.obj
+    link  $(LDFLAG) ars.obj main.obj ansic.obj
+
+main.obj : main.c main.h ars.h
+    cl $(CFLAG) main.c
+
+ars.obj : ars.c ars.h
+    cl $(CFLAG) ars.c
+
+ansic.obj : ansic.c main.h ars.h
+    cl $(CFLAG) ansic.c
+    
+clean: 
+    del *obj LOG.log *PDB *ilk *asm
+    

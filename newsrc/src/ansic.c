@@ -4,13 +4,6 @@
 #include "ars.h"
 
 extern AirlineListHead globalAirLineListHead;
-#ifndef _CRTIMP 
-#ifdef  _DLL 
-#define _CRTIMP __declspec(dllimport) 
-#else   /* ndef _DLL */ 
-#define _CRTIMP 
-#endif  /* _DLL */ 
-#endif  /* _CRTIMP */ 
 
 void LoadFileRecordToMem(void)
 {

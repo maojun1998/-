@@ -1,10 +1,12 @@
-CFLAG=/c 
-LFLAG= 
 
-all: ars.exe
+
+CFLAG=
+LDFLAG= 
+
+all: ars
 
 ars.exe : main.obj ars.obj ansic.obj
-    link  $(LFLAG) ars.obj main.obj ansic.obj
+     $(LDFLAG) ars.obj main.obj ansic.obj
 
 main.obj : main.c main.h ars.h
     cl $(CFLAG) main.c
@@ -17,4 +19,3 @@ ansic.obj : ansic.c main.h ars.h
     
 clean: 
     del *obj LOG.log *PDB *ilk *asm
-    
